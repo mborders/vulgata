@@ -8,6 +8,7 @@ import (
 	"os"
 )
 
+// Bible contains the old testament and new testament
 type Bible struct {
 	OldTestament Testament
 	NewTestament Testament
@@ -17,6 +18,7 @@ const bibleTar = "bible.tar.gz"
 const oldTestamentFilename = "old_testament.json"
 const newTestamentFilename = "new_testament.json"
 
+// NewBible creates a new bible instance
 func NewBible() *Bible {
 	bible := &Bible{}
 

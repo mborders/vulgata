@@ -2,10 +2,12 @@ package vulgata
 
 import "errors"
 
+// Testament consists of a list of books, old vs. new
 type Testament struct {
 	Books []Book
 }
 
+// GetBookNames creates a list of all book titles for the testament
 func (t *Testament) GetBookNames() []string {
 	var n []string
 
@@ -16,6 +18,7 @@ func (t *Testament) GetBookNames() []string {
 	return n
 }
 
+// GetBook obtains a book within the testament by its number
 func (t *Testament) GetBook(bookNumber int) (*Book, error) {
 	idx := bookNumber - 1
 	if idx < 0 || idx >= len(t.Books) {
@@ -25,6 +28,7 @@ func (t *Testament) GetBook(bookNumber int) (*Book, error) {
 	return &t.Books[idx], nil
 }
 
+// GetChapter obtains a chapter within the provided book by its number
 func (t *Testament) GetChapter(bookNumber int, chapterNumber int) (*Chapter, error) {
 	b, err := t.GetBook(bookNumber)
 	if err != nil {
@@ -39,6 +43,7 @@ func (t *Testament) GetChapter(bookNumber int, chapterNumber int) (*Chapter, err
 	return &b.Chapters[idx], nil
 }
 
+// GetVerse obtains a verse within the provided book/chapter by its number
 func (t *Testament) GetVerse(bookNumber int, chapterNumber int, verseNumber int) (*Verse, error) {
 	c, err := t.GetChapter(bookNumber, chapterNumber)
 	if err != nil {
