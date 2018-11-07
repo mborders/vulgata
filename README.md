@@ -13,7 +13,7 @@ Documentation here: https://godoc.org/github.com/borderstech/vulgata
 
 ```go
 // Create a new bible instance
-b := NewBible()
+b := vulgata.NewBible()
 
 // Get all book names for the old testament
 names := b.OldTestament.GetBookNames()
