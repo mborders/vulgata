@@ -2,7 +2,6 @@ package vulgata
 
 import (
 	"archive/tar"
-	"bytes"
 	"compress/gzip"
 	"encoding/json"
 	"io"
@@ -14,35 +13,40 @@ type Bible struct {
 	NewTestament Testament
 }
 
+const bibleTar = "bible.tar.gz"
+const oldTestamentFilename = "old_testament.json"
+const newTestamentFilename = "new_testament.json"
+
 func NewBible() *Bible {
-	f, _ := os.Open("bible.tar.gz")
+	bible := &Bible{}
+
+	f, _ := os.Open(bibleTar)
 	defer f.Close()
 
 	gzf, _ := gzip.NewReader(f)
-	tarReader := tar.NewReader(gzf)
+	defer gzf.Close()
 
-	bible := &Bible{}
+	tr := tar.NewReader(gzf)
 
 	for {
-		h, err := tarReader.Next()
-
+		h, err := tr.Next()
 		if err == io.EOF {
 			break
 		}
 
-		buf := bytes.Buffer{}
-		io.Copy(&buf, tarReader)
-
-		var books []Book
-		json.NewDecoder(&buf).Decode(&books)
-
 		switch h.Name {
-		case "old_testament.json":
-			bible.OldTestament = Testament{Books: books}
-		case "new_testament.json":
-			bible.NewTestament = Testament{Books: books}
+		case oldTestamentFilename:
+			bible.OldTestament = Testament{Books: decode(tr)}
+		case newTestamentFilename:
+			bible.NewTestament = Testament{Books: decode(tr)}
 		}
 	}
 
 	return bible
+}
+
+func decode(r io.Reader) []Book {
+	var books []Book
+	json.NewDecoder(r).Decode(&books)
+	return books
 }
