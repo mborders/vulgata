@@ -4,8 +4,11 @@ import (
 	"archive/tar"
 	"compress/gzip"
 	"encoding/json"
+	"fmt"
 	"io"
 	"os"
+	"path"
+	"runtime"
 )
 
 // Bible contains the old testament and new testament
@@ -14,15 +17,18 @@ type Bible struct {
 	NewTestament Testament
 }
 
-const bibleTar = "./bible.tar.gz"
+const bibleTar = "bible.tar.gz"
 const oldTestamentFilename = "old_testament.json"
 const newTestamentFilename = "new_testament.json"
 
 // NewBible creates a new bible instance
 func NewBible() *Bible {
+	_, currFile, _, _ := runtime.Caller(0)
+	filename := fmt.Sprintf("%s/%s", path.Dir(currFile), bibleTar)
+
 	bible := &Bible{}
 
-	f, _ := os.Open(bibleTar)
+	f, _ := os.Open(filename)
 	defer f.Close()
 
 	gzf, _ := gzip.NewReader(f)
