@@ -81,3 +81,10 @@ func TestTestament_GetVerse_InvalidVerse(t *testing.T) {
 	_, err = b.OldTestament.GetVerse(1, 1, 1000)
 	assert.Equal(t, "invalid verse number", err.Error())
 }
+
+func TestBible_Search(t *testing.T) {
+	v := b.Search("truth make you free", 10)
+
+	assert.NotEmpty(t, v)
+	assert.Equal(t, v[0].String(), "John 8:32")
+}
