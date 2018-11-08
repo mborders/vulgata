@@ -29,4 +29,11 @@ chap, err := b.OldTestament.GetChapter(1, 1)
 vers, err := b.NewTestament.GetVerse(4, 8, 32)
 fmt.Print(vers.Text) // English
 fmt.Print(vers.TextLatin) // Latin
+
+// Search for verses
+v := b.Search("truth make you free", 10) // max of 10 results
+fmt.Print(v[0].Book.Title)
+fmt.Print(v[0].Chapter.ChapterNumber)
+fmt.Print(v[0].Verse.Text)
+fmt.Print(v[0].String()) // John 8:32
 ```
