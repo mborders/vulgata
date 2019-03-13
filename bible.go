@@ -20,6 +20,7 @@ type Bible struct {
 	searchTree   *trie.Trie
 }
 
+// SearchNode represents a search result for a given verse inquiry
 type SearchNode struct {
 	Book    *Book
 	Chapter *Chapter
