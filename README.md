@@ -1,13 +1,13 @@
-[![GoDoc](http://godoc.org/github.com/borderstech/vulgata?status.png)](http://godoc.org/github.com/borderstech/vulgata)
-[![Build Status](https://travis-ci.org/borderstech/vulgata.svg?branch=master)](https://travis-ci.org/borderstech/vulgata)
-[![Go Report Card](https://goreportcard.com/badge/github.com/borderstech/vulgata)](https://goreportcard.com/report/github.com/borderstech/vulgata)
-[![codecov](https://codecov.io/gh/borderstech/vulgata/branch/master/graph/badge.svg)](https://codecov.io/gh/borderstech/vulgata)
+[![GoDoc](http://godoc.org/github.com/mborders/vulgata?status.png)](http://godoc.org/github.com/mborders/vulgata)
+[![Build Status](https://travis-ci.org/mborders/vulgata.svg?branch=master)](https://travis-ci.org/mborders/vulgata)
+[![Go Report Card](https://goreportcard.com/badge/github.com/mborders/vulgata)](https://goreportcard.com/report/github.com/mborders/vulgata)
+[![codecov](https://codecov.io/gh/mborders/vulgata/branch/master/graph/badge.svg)](https://codecov.io/gh/mborders/vulgata)
 
 # vulgata
 
 Golang library containing the entire Holy Bible with both the Douay-Rheims English and Clementina Vulgata Latin texts.
 
-Documentation here: https://godoc.org/github.com/borderstech/vulgata
+Documentation here: https://godoc.org/github.com/mborders/vulgata
 
 ## Example Usage
 
